@@ -6,4 +6,8 @@ export const API_ROUTES = {
     mealsbyid : (id : number) =>  `${API_BASE_URL}meals/${id}/`,	
     categories : API_BASE_URL + 'cat/',
     categoriesbyid : (id : number) =>  `${API_BASE_URL}cat/${id}/`,
+    search : (search : string) =>  `${API_BASE_URL}search/?${search}`,
+    login : `${API_BASE_URL}auth/login/`,
+    register : `${API_BASE_URL}auth/register/`,
+    resetpassword : `${API_BASE_URL}auth/resetpassword/`,
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm  , SubmitHandler} from 'react-hook-form';
-import { ExtendedMealData } from './models/Extendmealdata';
+import { ExtendedMealData } from '../../models/Extendmealdata';
 
 export interface MealFormData extends Omit<ExtendedMealData, 'keywords' | 'ingredients'> {
     keywords: string;
@@ -24,8 +24,8 @@ const MealAddForm : React.FC = () => {
 
   return (
     <>
-    <div>MealAddForm</div>
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-4 w-1/2'>
+    <div>MealAddForm</div>
     <div className="flex flex-col">
           <label htmlFor="name" className="mb-1">
             Name
