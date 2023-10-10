@@ -6,11 +6,13 @@ import axios, { AxiosError, AxiosResponse } from 'axios'
 import { API_ROUTES } from '../apiroutes'
 import { AuthContext } from '../context/AuthContext'
 import { ErrorResponse, JWTResponse } from '../models/responses'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const Login : React.FC = () => {
 
   const [showRegisterform, setShowRegisterForm] = React.useState<boolean>(false)
   const [ error , setError] = React.useState<ErrorResponse | null>( null)
+  const navigate = useNavigate()
   const { updateToken , token } = React.useContext(AuthContext)
 
     const onSubmit = (data : LoginData) => {
@@ -18,7 +20,8 @@ const Login : React.FC = () => {
           .then((res : AxiosResponse<JWTResponse , ErrorResponse>) => {
             
             if (res.status === 200) {
-              {res.data.jwt && updateToken(res.data.jwt)}
+              res.data.jwt && updateToken(res.data.jwt)
+              navigate("/")
             }
           })
           .catch((err : AxiosError<ErrorResponse>) => {
@@ -42,9 +45,6 @@ const Login : React.FC = () => {
         )}
         <button className='bg-red-200 p-2 rounded-md' onClick={() => setShowRegisterForm(!showRegisterform)}>Add New User</button>
         <button className='bg-red-200 p-2 rounded-md'>Forget Password</button>
-
-        <p>{token}</p>
-        <p>{error?.detail}</p>
     </div>
   )
 }

@@ -1,11 +1,14 @@
+//machine learnign search box
 import axios from 'axios';
 import React from 'react'
 import { API_ROUTES } from '../apiroutes';
+import Loading from './loading/Loading';
 
 const SearchMeals:React.FC = () => {
 
     const [searchTerm, setSearchTerm] = React.useState<string[]>([])
     const [ recommandations, setRecommandations] = React.useState<string[]>([])
+    const [ loading , setLoading] = React.useState<boolean>(false)
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -22,10 +25,11 @@ const SearchMeals:React.FC = () => {
      const handleOnClick = () => {
       const params =  searchTerm.map(meal => `meal=${meal}`).join('&');
       console.log(params);
-
+      setLoading(true)
       axios.get(API_ROUTES.search(params))
         .then((res) => {
             setRecommandations(res.data.meals)
+            setLoading(false)
         })
         .then((err) => console.log(err))
       }
@@ -52,13 +56,15 @@ const SearchMeals:React.FC = () => {
                 <span key={item} className='border p-2'>{item}</span>
             )
         })}</p>
+        {loading ?
+        <Loading/> : 
         <p className='flex flex-col items-start gap-2'>{recommandations.map((item) => {
-            return (
-                <span key={item} className='border p-2'>{item}</span>
-            )
-        })
-            
-            }</p>
+          return (
+              <span key={item} className='border p-2'>{item}</span>
+          )
+      })
+          
+          }</p>}
     </div>
   )
 }

@@ -16,3 +16,9 @@ export interface ExtendedMealData {
     keywords: string[];
     ingredients: string[];
 }
+
+export interface ExtendedMealDataWithId extends ExtendedMealData {
+
+    id : number;
+    createtAt : Date
+}

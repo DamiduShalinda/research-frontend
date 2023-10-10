@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BasicMeal } from '../models/basicmealdata'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { API_ROUTES } from '../apiroutes'
 import BasicMealCard from '../components/cards/BasicMealCard'
-import SearchMeals from '../components/SearchMeals'
-import { useNavigate } from 'react-router-dom'
 
-const Home : React.FC = () => {
+const HomeWithoutLogin:React.FC = () => {
 
-  const [mealData, setMealData] = useState<BasicMeal[]>([])
-  const [mealDataLoaded, setMealDataLoaded] = useState(false)
+  const [mealData, setMealData] = React.useState<BasicMeal[]>([])
+  const [mealDataLoaded, setMealDataLoaded] = React.useState(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
+  React.useEffect(() => {
     axios.get(API_ROUTES.meals)
       .then((res) => {
         setMealData(res.data)
@@ -25,13 +24,10 @@ const Home : React.FC = () => {
     navigate(`/extendmeal/${id}`)
   }
 
-
-
-
   return (
-    <>
-    <SearchMeals/>
-    {mealDataLoaded ? (
+    <div>
+      HomePage without login
+      {mealDataLoaded ? (
       <div className=''>
         <h1 className='text-7xl'>Home
         </h1>
@@ -47,8 +43,8 @@ const Home : React.FC = () => {
             <h1 className='text-7xl'>Loading...</h1>
             </div>
             )}
-    </>
+    </div>
   )
 }
 
-export default Home
+export default HomeWithoutLogin

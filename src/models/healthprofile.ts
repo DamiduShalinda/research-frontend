@@ -1,15 +1,15 @@
 export interface HealthProfile {
 
     calories : number,
-    carbohydratecontent : number,
-    cholesterolcontent : number,
-    fatcontent : number,
-    fibercontent : number,
-    proteincontent : number,
-    saturatedfatcontent : number,
-    sodiumcontent : number,
-    sugarcontent : number,
+    carbohydrateContent : number,
+    cholesterolContent : number,
+    fatContent : number,
+    fiberContent : number,
+    proteinContent : number,
+    saturatedFatContent : number,
+    sodiumContent : number,
+    sugarContent : number,
     id : number,
-    conditionname : string,
+    condition_name : string,
 
 }

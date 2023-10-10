@@ -7,24 +7,28 @@ export interface MealFormData extends Omit<ExtendedMealData, 'keywords' | 'ingre
     ingredients: string;
   }  
 
+  interface MealFormDataProps {
+    onSubmit : (data : ExtendedMealData) => void
+  }
 
 
-const MealAddForm : React.FC = () => {
+const MealAddForm : React.FC<MealFormDataProps> = ({onSubmit} : MealFormDataProps) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<MealFormData>();
 
-    const onSubmit : SubmitHandler<MealFormData> = (data) => {
+    const onFormSubmit : SubmitHandler<MealFormData> = (data) => {
         const formattedData : ExtendedMealData = {
             ...data,
             keywords: data.keywords.split(',').map((keyword) => keyword.trim().toLowerCase()),
             ingredients: data.ingredients.split(',').map((ingredient) => ingredient.trim().toLowerCase())
         }
         console.log(formattedData)
+        onSubmit(formattedData)
     }
 
   return (
     <>
-    <form onSubmit={handleSubmit(onSubmit)} className='space-y-4 w-1/2'>
+    <form onSubmit={handleSubmit(onFormSubmit)} className='space-y-4 w-1/2'>
     <div>MealAddForm</div>
     <div className="flex flex-col">
           <label htmlFor="name" className="mb-1">
@@ -46,7 +50,7 @@ const MealAddForm : React.FC = () => {
             type="text"
             id="description"
             placeholder="Enter description"
-            {...register('description', { required: true, maxLength: 20 })}
+            {...register('description', { required: true, maxLength: 200 })}
             className="p-2 border rounded"
           />
         </div>
@@ -70,7 +74,7 @@ const MealAddForm : React.FC = () => {
             type="text"
             id="keywords"
             placeholder="Enter keywords"
-            {...register('keywords', { required: true, maxLength: 20 })}
+            {...register('keywords', { required: true, maxLength: 100 })}
             className="p-2 border rounded"
           />
         </div>
@@ -82,7 +86,7 @@ const MealAddForm : React.FC = () => {
             type="text"
             id="ingredients"
             placeholder="Enter ingredients"
-            {...register('ingredients', { required: true, maxLength: 20 })}
+            {...register('ingredients', { required: true, maxLength: 100 })}
             className="p-2 border rounded"
           />
         </div>

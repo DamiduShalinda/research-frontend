@@ -4,12 +4,24 @@ import { useForm } from 'react-hook-form'
 
 interface HealthDataFormProps {
   onSubmit: (data : HealthProfile) => void
+  isDisabled : boolean
+  values : HealthProfile
 }
 
 
 const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps) => {
 
-  const { register, handleSubmit, errors } = useForm<HealthProfile>()
+  const { register, handleSubmit, setValue , reset } = useForm<HealthProfile>()
+
+React.useEffect(() => {
+
+  reset(data.values)
+
+}, [])
+
+  
+
+  
   return (
     <div>
       <form onSubmit={handleSubmit(data.onSubmit)} className='flex flex-col gap-2'>
@@ -20,6 +32,7 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                       type="number"
                       placeholder='calories'
                       id='username'
+                      disabled={data.isDisabled}
                       {...register('calories' , {min: 0})}
                       className="p-2 border rounded"
                       />
@@ -30,7 +43,8 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                       type="number"
                       placeholder='carbohydratecontent'
                       id='carbohydratecontent'
-                      {...register('carbohydratecontent')}
+                      disabled={data.isDisabled}
+                      {...register('carbohydrateContent' , {min: 0})}
                       className="p-2 border rounded"
                       />
                 </div>
@@ -40,7 +54,8 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                       type="number"
                       placeholder='cholesterolcontent'
                       id='cholesterolcontent'
-                      {...register('cholesterolcontent')}
+                      disabled={data.isDisabled}
+                      {...register('cholesterolContent' , {min: 0})}
                       className="p-2 border rounded"
                       />
                 </div>
@@ -50,7 +65,8 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                       type="number"
                       placeholder='fatcontent'
                       id='fatcontent'
-                      {...register('fatcontent')}
+                      disabled={data.isDisabled}
+                      {...register('fatContent' , {min: 0})}
                       className="p-2 border rounded"
                       />
                 </div>
@@ -60,7 +76,8 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                       type="number"
                       placeholder='fibercontent'
                       id='fibercontent'
-                      {...register('fibercontent')}
+                      disabled={data.isDisabled}
+                      {...register('fiberContent' , {min: 0})}
                       className="p-2 border rounded"
                       />
                 </div>
@@ -70,7 +87,8 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                       type="number"
                       placeholder='proteincontent'
                       id='proteincontent'
-                      {...register('proteincontent')}
+                      disabled={data.isDisabled}
+                      {...register('proteinContent' , {min: 0})}
                       className="p-2 border rounded"
                       />
                 </div>
@@ -80,7 +98,8 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                       type="number"
                       placeholder='sodiumcontent'
                       id='sodiumcontent'
-                      {...register('sodiumcontent')}
+                      disabled={data.isDisabled}
+                      {...register('sodiumContent' , {min: 0})}
                       className="p-2 border rounded"
                       />
                 </div>
@@ -90,7 +109,8 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                       type="number"
                       placeholder='saturatedfatcontent'
                       id='saturatedfatcontent'
-                      {...register('saturatedfatcontent')}
+                      disabled={data.isDisabled}
+                      {...register('saturatedFatContent' , {min: 0})}
                       className="p-2 border rounded"
                       />
                 </div>
@@ -100,7 +120,8 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                       type="number"
                       placeholder='sugarcontent'
                       id='sugarcontent'
-                      {...register('sugarcontent')}
+                      disabled={data.isDisabled}
+                      {...register('sugarContent' , {min: 0})}
                       className="p-2 border rounded"
                       />
                 </div>
@@ -110,12 +131,13 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
                 <input 
                     type="text" 
                     placeholder='conditionname' 
-                    id='conditionname' 
-                    {...register('conditionname')}
+                    id='conditionname'
+                    disabled={data.isDisabled}
+                    {...register('condition_name')}
                     className="p-2 border rounded"
                     />
               </div>
-            <input type="submit" value='Submit' className='bg-slate-300 border rounded-md w-full'/>
+            <input type="submit" value='Submit' className='bg-slate-300 border rounded-md w-full' hidden={data.isDisabled}/>
       </form>
     </div>
   )

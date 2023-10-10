@@ -1,0 +1,27 @@
+{
+    "name": "Deluxe Burger",
+    "description": "A delicious burger with all the toppings",
+    "price": "9.99",
+    "keywords": [
+        "burger",
+        "fastfood",
+        "deluxe"
+    ],
+    "ingredients": [
+        "beef patty",
+        "lettuce",
+        "tomato",
+        "cheese",
+        "bacon"
+    ],
+    "image": "burge.jpg",
+    "calories": "600",
+    "carbohydrateContent": "45",
+    "cholesterolContent": "50",
+    "fatContent": "30",
+    "fiberContent": "4",
+    "proteinContent": "25",
+    "saturatedFatContent": "10",
+    "sodiumContent": "900",
+    "sugarContent": "5"
+}
