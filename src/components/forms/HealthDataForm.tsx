@@ -5,17 +5,19 @@ import { useForm } from 'react-hook-form'
 interface HealthDataFormProps {
   onSubmit: (data : HealthProfile) => void
   isDisabled : boolean
-  values : HealthProfile
+  values? : HealthProfile
 }
 
 
 const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps) => {
 
-  const { register, handleSubmit, setValue , reset } = useForm<HealthProfile>()
+  const { register, handleSubmit , reset } = useForm<HealthProfile>()
 
 React.useEffect(() => {
 
-  reset(data.values)
+  if (data.values) {
+    reset(data.values)
+  }
 
 }, [])
 

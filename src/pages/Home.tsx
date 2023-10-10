@@ -5,6 +5,7 @@ import { API_ROUTES } from '../apiroutes'
 import BasicMealCard from '../components/cards/BasicMealCard'
 import SearchMeals from '../components/SearchMeals'
 import { useNavigate } from 'react-router-dom'
+import KeywordSelection from '../components/KeywordSelection'
 
 const Home : React.FC = () => {
 
@@ -31,16 +32,18 @@ const Home : React.FC = () => {
   return (
     <>
     <SearchMeals/>
+    <KeywordSelection/>
     {mealDataLoaded ? (
       <div className=''>
         <h1 className='text-7xl'>Home
         </h1>
-        {mealData.map((meal) => {
-          return (
-            <BasicMealCard key={meal.id} meal={meal} onclick={onclick}/>
-          )
-
-        })}
+        <div className="grid grid-cols-2 gap-3 mx-5">
+          {mealData.map((meal) => {
+            return (
+              <BasicMealCard key={meal.id} meal={meal} onclick={onclick}/>
+            )
+          })}
+        </div>
         </div>
         ) : (
           <div className=''>

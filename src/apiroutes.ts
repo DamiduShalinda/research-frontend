@@ -10,5 +10,6 @@ export const API_ROUTES = {
     login : `${API_BASE_URL}auth/login/`,
     register : `${API_BASE_URL}auth/register/`,
     resetpassword : `${API_BASE_URL}auth/resetpassword/`,
-    health : `${API_BASE_URL}/health`
+    health : `${API_BASE_URL}/health`,
+    keywords : `${API_BASE_URL}meals/keywords`,
 }

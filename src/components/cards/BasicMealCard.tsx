@@ -8,7 +8,7 @@ interface Props {
 
 const BasicMealCard : React.FC<Props> = ({meal , onclick} : Props) => {
   return (
-    <div key={meal.id} className='border-2 border-black m-2 p-1 rounded-lg w-1/3'>
+    <div key={meal.id} className='border-2 border-black m-2 p-1 rounded-lg w-full'>
     <p className='font-bold'>{meal.name}</p>
     <p>{meal.description}</p>
     <p>{meal.price}</p>

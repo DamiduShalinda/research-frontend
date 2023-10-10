@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { API_ROUTES } from '../apiroutes'
 import BasicMealCard from '../components/cards/BasicMealCard'
+import KeywordSelection from '../components/KeywordSelection'
 
 const HomeWithoutLogin:React.FC = () => {
 
@@ -27,6 +28,7 @@ const HomeWithoutLogin:React.FC = () => {
   return (
     <div>
       HomePage without login
+      <KeywordSelection/>
       {mealDataLoaded ? (
       <div className=''>
         <h1 className='text-7xl'>Home
