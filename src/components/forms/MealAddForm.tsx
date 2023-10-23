@@ -9,12 +9,21 @@ export interface MealFormData extends Omit<ExtendedMealData, 'keywords' | 'ingre
 
   interface MealFormDataProps {
     onSubmit : (data : ExtendedMealData) => void
+    values? : MealFormData
   }
 
 
-const MealAddForm : React.FC<MealFormDataProps> = ({onSubmit} : MealFormDataProps) => {
+const MealAddForm : React.FC<MealFormDataProps> = ({onSubmit , values} : MealFormDataProps) => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<MealFormData>();
+    const { register, handleSubmit, formState: { errors } , reset } = useForm<MealFormData>();
+
+    React.useEffect(() => {
+      
+      if (values) {
+        reset(values)
+      }
+    }, [])
+    
 
     const onFormSubmit : SubmitHandler<MealFormData> = (data) => {
         const formattedData : ExtendedMealData = {

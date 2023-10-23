@@ -15,6 +15,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }: ProtectedRo
       // Check if the token is loaded from localStorage.
       if (token !== null) {
         setLoading(false);
+      } else {
+        setLoading(false)
       }
     }, [token]);
   

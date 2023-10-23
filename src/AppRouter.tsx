@@ -8,6 +8,7 @@ import { AuthContext } from './context/AuthContext'
 import HomeWithoutLogin from './pages/HomeWithoutLogin'
 import ProtectedRoute from './utils/ProtectedRoute'
 import ExtendedMeal from './pages/ExtendedMeal'
+import MealsAddingPage from './pages/MealsAddingPage'
 
 const AppRouter:React.FC = () => {
 
@@ -18,6 +19,8 @@ const AppRouter:React.FC = () => {
       <Routes>
         <Route path="/" element={token ? <ProtectedRoute><Home/></ProtectedRoute> : <HomeWithoutLogin/>}/>
         <Route path="/meals" element={<ProtectedRoute><Meals/></ProtectedRoute>}/>
+        <Route path="/meals/new/:id" element={<ProtectedRoute><MealsAddingPage/></ProtectedRoute>}/>
+        <Route path="/meals/new/" element={<ProtectedRoute><MealsAddingPage/></ProtectedRoute>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/account" element={<ProtectedRoute><Account/></ProtectedRoute>}/>
         <Route path="/extendmeal/:id" element={<ProtectedRoute><ExtendedMeal/></ProtectedRoute>}/>
