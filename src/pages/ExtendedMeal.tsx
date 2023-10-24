@@ -5,6 +5,8 @@ import { number } from 'yup'
 import { ExtendedMealData } from '../models/Extendmealdata'
 import { API_ROUTES } from '../apiroutes'
 import Loading from '../components/loading/Loading'
+import { ProductCard } from '../components/cards/ProductCard'
+import { ProductDetails } from '../components/cards/ProductDetails'
 
 const ExtendedMeal:React.FC = () => {
 
@@ -31,29 +33,8 @@ const ExtendedMeal:React.FC = () => {
     
     return (
         <div>
-          Extended meal page {id}
           {mealData ? (
-            <div>
-              {[
-                { label: 'Meal Name', value: mealData.name },
-                { label: 'Description', value: mealData.description },
-                { label: 'Calories', value: mealData.calories },
-                { label: 'Carbohydrate Content', value: mealData.carbohydrateContent },
-                { label: 'Cholesterol Content', value: mealData.cholesterolContent },
-                { label: 'Fat Content', value: mealData.fatContent },
-                { label: 'Fiber Content', value: mealData.fiberContent },
-                { label: 'Protein Content', value: mealData.proteinContent },
-                { label: 'Saturated Fat Content', value: mealData.saturatedFatContent },
-                { label: 'Sodium Content', value: mealData.sodiumContent },
-                { label: 'Sugar Content', value: mealData.sugarContent },
-              ].map((property, index) => (
-                <div key={index} className='flex flex-row gap-2'>
-                  <p>{property.label}:</p>
-                  <p>{property.value}</p>
-                </div>
-              ))}
-
-            </div>
+          <ProductDetails meal={mealData}/>
           ) : (
             <Loading />
           )}

@@ -7,6 +7,7 @@ import { API_ROUTES } from '../apiroutes'
 import { AuthContext } from '../context/AuthContext'
 import { ErrorResponse, JWTResponse } from '../models/responses'
 import { Navigate, useNavigate } from 'react-router-dom'
+import { SignInCard } from '../components/cards/SignInCard'
 
 const Login : React.FC = () => {
 
@@ -37,14 +38,12 @@ const Login : React.FC = () => {
 
 
   return (
-    <div className='flex flex-col items-center w-full justify-center gap-3'>
+    <div>
         {showRegisterform ? (
             <RegisterForm onSubmit={onRegister}/>
         ) : (
-            <LoginForm onSubmit={onSubmit}/>
+            <SignInCard handleSignUp={() => setShowRegisterForm(!showRegisterform)} onSubmit={onSubmit}/>
         )}
-        <button className='bg-red-200 p-2 rounded-md' onClick={() => setShowRegisterForm(!showRegisterform)}>Add New User</button>
-        <button className='bg-red-200 p-2 rounded-md'>Forget Password</button>
     </div>
   )
 }

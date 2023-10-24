@@ -5,6 +5,8 @@ import axios from 'axios'
 import { API_ROUTES } from '../apiroutes'
 import BasicMealCard from '../components/cards/BasicMealCard'
 import KeywordSelection from '../components/KeywordSelection'
+import { ProductCard } from '../components/cards/ProductCard'
+import ViewCartButton from '../components/buttons/ViewCartButton'
 
 const HomeWithoutLogin:React.FC = () => {
 
@@ -27,24 +29,17 @@ const HomeWithoutLogin:React.FC = () => {
 
   return (
     <div>
-      HomePage without login
-      <KeywordSelection/>
       {mealDataLoaded ? (
       <div className=''>
-        <h1 className='text-7xl'>Home
-        </h1>
-        {mealData.map((meal) => {
-          return (
-            <BasicMealCard key={meal.id} meal={meal} onclick={onclick}/>
-          )
-
-        })}
+        <ProductCard mealList={mealData} onClickViewMore={onclick}/>
         </div>
         ) : (
           <div className=''>
             <h1 className='text-7xl'>Loading...</h1>
             </div>
             )}
+
+          <ViewCartButton/>
     </div>
   )
 }
