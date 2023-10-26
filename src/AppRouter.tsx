@@ -28,6 +28,7 @@ const AppRouter:React.FC = () => {
         <Route path="/extendmeal/:id" element={<ProtectedRoute><ExtendedMeal/></ProtectedRoute>}/>
         <Route path="/cart" element={<ProtectedRoute><CartView/></ProtectedRoute>}/>
         <Route path="/order/:id" element={<ProtectedRoute><OrderPage/></ProtectedRoute>}/>
+        <Route path="/order" element={<ProtectedRoute><OrderPage/></ProtectedRoute>}/>
         <Route path="*" element={<h1>Not Found</h1>}/>
       </Routes>
     </div>

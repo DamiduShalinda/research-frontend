@@ -4,11 +4,12 @@ import { Order } from '../../models/Order'
 import QRCode from 'react-qr-code'
 
 interface Props {
-  order: Order
+  order: Order,
+  qrString: string
 }
 
 
-export const OrderCard = ({order} : Props) => {
+export const OrderCard = ({order , qrString} : Props) => {
 
   const image = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fd17b420-b388-4c8a-aaaa-e0a98ddf175f/dunk-high-retro-shoe-DdRmMZ.png'
   return (
@@ -36,7 +37,7 @@ export const OrderCard = ({order} : Props) => {
                 <QRCode
                   size={256}
                   style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                  value={"Helloo"}
+                  value={qrString}
                   viewBox={`0 0 256 256`}
                 />
               </div>

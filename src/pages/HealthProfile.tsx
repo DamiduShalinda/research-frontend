@@ -59,7 +59,7 @@ const HealthProfilePage = ({onViewOrdersClick} : Props) => {
       </div>
     ) : (
       <>
-      <div className='font-medium'>No health profile found</div>
+      <div className='font-medium text-center mt-4'>No health profile found</div>
       <HealthDataForm onSubmit={onSubmit} isDisabled={false}  onClickViewOrders={onViewOrdersClick} onClickUpdate={onUpdateButtonClick}/>
       </>
     )}

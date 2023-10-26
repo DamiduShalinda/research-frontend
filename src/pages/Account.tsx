@@ -13,7 +13,7 @@ const Account:React.FC = () => {
 
   const { token } = React.useContext(AuthContext)
   const [ ordersList , setOrdersList ] = React.useState<BasicOrder[]>([])
-  const [ showHelathDetails , setShowHelathDetails ] = React.useState<boolean>(true)
+  const [ showHelathDetails , setShowHelathDetails ] = React.useState<boolean>(false)
 
 
 

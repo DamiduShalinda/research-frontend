@@ -4,6 +4,7 @@ import { CartOne } from '../components/cards/CartCard';
 import { AuthContext } from '../context/AuthContext';
 import { API_ROUTES } from '../apiroutes';
 import { AddHeader } from '../utils/AxiosHeader';
+import { useCart } from '../context/CartContext';
 
 interface checkout {
   id : number,
@@ -14,6 +15,7 @@ const CartView: React.FC = () => {
 
 
   const { token } = React.useContext(AuthContext)
+  const { clearCart } = useCart();
 
   const handleCheckOut = (cart: CartItem[]) => {
     
@@ -29,6 +31,7 @@ const CartView: React.FC = () => {
       .then((res) => {
         console.log(res.data)
         alert('Checkout successful');
+        clearCart();
       })
       .catch((err) => {
         console.log(err.response?.data)
