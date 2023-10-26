@@ -4,8 +4,12 @@ import { useCart } from '../../context/CartContext';
 import { CartItem } from '../../cartComponents/Cart';
 
 
+interface CartOneProps {
+  onOrder: (cart: CartItem[]) => void;
+}
 
-export function CartOne() {
+
+export function CartOne({ onOrder }: CartOneProps) {
 
   const image = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fd17b420-b388-4c8a-aaaa-e0a98ddf175f/dunk-high-retro-shoe-DdRmMZ.png'
 
@@ -14,9 +18,6 @@ export function CartOne() {
 
   const totalprice = cart.reduce((acc, item) => acc + item.meal.price * item.quantity, 0);
   
-  function handleOrder(cart: CartItem[]): void {
-    console.log(cart);
-  }
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col space-y-4 p-6 px-2 sm:p-10 sm:px-2">
@@ -74,7 +75,7 @@ export function CartOne() {
         <button
           type="button"
           className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black  hover:bg-black hover:text-white"
-          onClick={() => handleOrder(cart)}
+          onClick={() => onOrder(cart)}
         >
           Order
         </button>

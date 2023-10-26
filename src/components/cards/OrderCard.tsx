@@ -1,6 +1,6 @@
 import React from 'react'
 import { CartItem } from '../../cartComponents/Cart'
-import { Order } from '../../pages/Order'
+import { Order } from '../../models/Order'
 
 interface Props {
   order: Order
@@ -22,8 +22,8 @@ export const OrderCard = ({order} : Props) => {
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-1">
               {[
                 ['Order ID', order.id],
-                ['Date', order.date],
-                ['Total Amount', order.total],
+                ['Date', new Date(order.createdAt).toLocaleString()],
+                ['Total Amount', '$ '+ order.total],
                 ['Order Status', order.status],
               ].map(([key, value]) => (
                 <div key={key} className="mb-4">
@@ -39,7 +39,7 @@ export const OrderCard = ({order} : Props) => {
             <ul className="-my-7 divide-y divide-gray-200">
               {order.items.map((item) => (
                 <li
-                  key={item.meal.id}
+                  key={item.name}
                   className="flex flex-col justify-between space-x-5 py-7 md:flex-row"
                 >
                   <div className="flex flex-1 items-stretch">
@@ -53,7 +53,7 @@ export const OrderCard = ({order} : Props) => {
 
                     <div className="ml-5 flex flex-col justify-between">
                       <div className="flex-1">
-                        <p className="text-sm font-bold text-gray-900">{item.meal.name}</p>
+                        <p className="text-sm font-bold text-gray-900">{item.name}</p>
                       </div>
 
                       <p className="mt-4 text-sm font-medium text-gray-500">x {item.quantity}</p>
@@ -61,7 +61,7 @@ export const OrderCard = ({order} : Props) => {
                   </div>
 
                   <div className="ml-auto flex flex-col items-end justify-between">
-                    <p className="text-right text-sm font-bold text-gray-900">{item.meal.price}</p>
+                    <p className="text-right text-sm font-bold text-gray-900">$ {item.price}</p>
                   </div>
                 </li>
               ))}
