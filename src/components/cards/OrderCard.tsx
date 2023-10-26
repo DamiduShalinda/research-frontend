@@ -1,6 +1,7 @@
 import React from 'react'
 import { CartItem } from '../../cartComponents/Cart'
 import { Order } from '../../models/Order'
+import QRCode from 'react-qr-code'
 
 interface Props {
   order: Order
@@ -31,6 +32,14 @@ export const OrderCard = ({order} : Props) => {
                   <div className="text-sm font-medium text-gray-700">{value}</div>
                 </div>
               ))}
+              <div style={{ height: "auto", margin: "0 auto", maxWidth: 200, width: "100%" }}>
+                <QRCode
+                  size={256}
+                  style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                  value={"Helloo"}
+                  viewBox={`0 0 256 256`}
+                />
+              </div>
             </div>
           </div>
         </div>

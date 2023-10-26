@@ -1,4 +1,3 @@
-import React from 'react'
 import { BasicOrder } from '../models/Order'
 
 interface Props {
@@ -12,7 +11,7 @@ export function Table({ordersList , onViewHealthClick} : Props) {
       <section className="mx-auto w-full max-w-7xl px-4 py-4">
         <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
           <div>
-            <h2 className="text-2xl font-semibold">Orders</h2>
+            <h2 className="text-3xl font-semibold">Orders</h2>
             <p className="mt-1 text-sm text-gray-700">
               This is a list of all orders placed by you
             </p>

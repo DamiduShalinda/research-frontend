@@ -31,14 +31,14 @@ const Account:React.FC = () => {
     }, [])
 
   function showHelathDetailsCOmp(): void {
-    setShowHelathDetails(true)
+    setShowHelathDetails(!showHelathDetails)
   }
 
   return (
       <div>
           {showHelathDetails ? (
             <div>
-              <HealthProfilePage />
+              <HealthProfilePage onViewOrdersClick={showHelathDetailsCOmp}/>
             </div>
             ) : (
               <div>

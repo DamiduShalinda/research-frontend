@@ -6,15 +6,17 @@ interface HealthDataFormProps {
   onSubmit: (data : HealthProfile) => void
   isDisabled : boolean
   values? : HealthProfile
+  onClickViewOrders : () => void
+  onClickUpdate : () => void
 }
 
 
 const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps) => {
 
   const { register, handleSubmit , reset } = useForm<HealthProfile>()
-  const labelStyles = "block text-sm font-medium text-gray-700 mb-1";
+  const labelStyles = "block text-sm font-medium text-gray-700 mb-1 capitalize";
   const inputStyles = "block w-full h-10 px-4 py-2 text-base placeholder-gray-400 border rounded-lg border-gray-300 focus:outline-none focus:ring focus:ring-indigo-200";
-  const divstyles = "w-full md:w-1/3 mb-2"
+  const divstyles = "w-full md:w-2/3 mb-2"
 
 React.useEffect(() => {
 
@@ -28,8 +30,30 @@ React.useEffect(() => {
 
   
   return (
-    <div>
-      <form onSubmit={handleSubmit(data.onSubmit)}>
+    <>
+      <section className="mx-auto w-full max-w-7xl px-4 py-4">
+        <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+          <div>
+            <h2 className="text-3xl font-semibold"> Health Profile</h2>
+            <p className="mt-1 text-sm text-gray-700">
+              This is a helath profile of the user
+            </p>
+          </div>
+          <div>
+            <button
+              type="button"
+              className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              onClick={() => data.onClickViewOrders()}
+            >
+              View All Orders
+            </button>
+          </div>
+        </div>
+        <div className="mt-6 flex flex-col bg-gray-50">
+          <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+              <div className="overflow-hidden border border-gray-200 md:rounded-lg">
+              <form onSubmit={handleSubmit(data.onSubmit)} className='grid grid-cols-2 p-4 '>
             <div className={divstyles}>
               <label
                 htmlFor="calories"
@@ -51,7 +75,7 @@ React.useEffect(() => {
                   htmlFor="carbohydratecontent"
                   className={labelStyles}
                 >
-                  carbohydratecontent
+                  carbohydrate content
                 </label>
                 <input
                   type="number"
@@ -63,10 +87,10 @@ React.useEffect(() => {
                 />
               </div>
               <div className={divstyles}>
-                  <label htmlFor="cholesterolcontent" className={labelStyles}> cholesterolcontent</label>
+                  <label htmlFor="cholesterolcontent" className={labelStyles}> cholesterol content</label>
                   <input
                       type="number"
-                      placeholder='cholesterolcontent'
+                      placeholder='cholesterol content'
                       id='cholesterolcontent'
                       disabled={data.isDisabled}
                       {...register('cholesterolContent' , {min: 0})}
@@ -74,10 +98,10 @@ React.useEffect(() => {
                       />
                 </div>
               <div className={divstyles}>
-                  <label htmlFor="fatcontent" className={labelStyles}> fatcontent</label>
+                  <label htmlFor="fatcontent" className={labelStyles}> fat content</label>
                   <input
                       type="number"
-                      placeholder='fatcontent'
+                      placeholder='fat content'
                       id='fatcontent'
                       disabled={data.isDisabled}
                       {...register('fatContent' , {min: 0})}
@@ -85,10 +109,10 @@ React.useEffect(() => {
                       />
                 </div>
               <div className={divstyles}>
-                  <label htmlFor="fibercontent" className={labelStyles}> fibercontent</label>
+                  <label htmlFor="fibercontent" className={labelStyles}> fiber content</label>
                   <input
                       type="number"
-                      placeholder='fibercontent'
+                      placeholder='fiber content'
                       id='fibercontent'
                       disabled={data.isDisabled}
                       {...register('fiberContent' , {min: 0})}
@@ -96,10 +120,10 @@ React.useEffect(() => {
                       />
                 </div>
               <div className={divstyles}>
-                  <label htmlFor="proteincontent" className={labelStyles}> proteincontent</label>
+                  <label htmlFor="proteincontent" className={labelStyles}> protein content</label>
                   <input
                       type="number"
-                      placeholder='proteincontent'
+                      placeholder='protein content'
                       id='proteincontent'
                       disabled={data.isDisabled}
                       {...register('proteinContent' , {min: 0})}
@@ -107,10 +131,10 @@ React.useEffect(() => {
                       />
                 </div>
               <div className={divstyles}>
-                  <label htmlFor="sodiumcontent" className={labelStyles}> sodiumcontent</label>
+                  <label htmlFor="sodiumcontent" className={labelStyles}> sodium content</label>
                   <input
                       type="number"
-                      placeholder='sodiumcontent'
+                      placeholder='sodium content'
                       id='sodiumcontent'
                       disabled={data.isDisabled}
                       {...register('sodiumContent' , {min: 0})}
@@ -118,10 +142,10 @@ React.useEffect(() => {
                       />
                 </div>
               <div className={divstyles}>
-                  <label htmlFor="saturatedfatcontent" className={labelStyles}> saturatedfatcontent</label>
+                  <label htmlFor="saturatedfatcontent" className={labelStyles}> saturated fat content</label>
                   <input
                       type="number"
-                      placeholder='saturatedfatcontent'
+                      placeholder='saturated fat content'
                       id='saturatedfatcontent'
                       disabled={data.isDisabled}
                       {...register('saturatedFatContent' , {min: 0})}
@@ -129,10 +153,10 @@ React.useEffect(() => {
                       />
                 </div>
               <div className={divstyles}>
-                  <label htmlFor="sugarcontent" className={labelStyles}> sugarcontent</label>
+                  <label htmlFor="sugarcontent" className={labelStyles}> sugar content</label>
                   <input
                       type="number"
-                      placeholder='sugarcontent'
+                      placeholder='sugar content'
                       id='sugarcontent'
                       disabled={data.isDisabled}
                       {...register('sugarContent' , {min: 0})}
@@ -140,10 +164,10 @@ React.useEffect(() => {
                       />
                 </div>
             <div className={divstyles}>
-                <label htmlFor="conditionname" className={labelStyles}> conditionname</label>
+                <label htmlFor="condition name" className={labelStyles}> condition name</label>
                 <input 
                     type="text" 
-                    placeholder='conditionname' 
+                    placeholder='condition name' 
                     id='conditionname'
                     disabled={data.isDisabled}
                     {...register('condition_name')}
@@ -153,8 +177,17 @@ React.useEffect(() => {
             <input type="submit" value='Submit' 
             className='rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 w-1/3' 
             hidden={data.isDisabled} />
-      </form>
-    </div>
+            <input type="button" value='Update' 
+            className='rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 w-1/3' 
+            onClick={data.onClickUpdate}
+            hidden={!data.isDisabled} />
+            </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
 

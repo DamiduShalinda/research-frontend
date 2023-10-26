@@ -8,7 +8,11 @@ import { API_ROUTES } from '../apiroutes'
 import { AddHeader } from '../utils/AxiosHeader'
 import { AuthContext } from '../context/AuthContext'
 
-const HealthProfilePage = () => {
+interface Props {
+  onViewOrdersClick: () => void
+}
+
+const HealthProfilePage = ({onViewOrdersClick} : Props) => {
 
     const { token } = React.useContext(AuthContext)
     const [ healthprofile , setHealthProfile] = React.useState<HealthProfile>()
@@ -46,18 +50,17 @@ const HealthProfilePage = () => {
 
 
   return (
-    <div className='mx-3 w-full'>
+    <div>
     {loading ? (
       <Loading />
     ) : healthprofile ? (
       <div>
-        <HealthDataForm onSubmit={onSubmit} values={healthprofile} isDisabled={isDisabled} />
-        <button type='button' onClick={onUpdateButtonClick}>Update</button>
+        <HealthDataForm onSubmit={onSubmit} values={healthprofile} isDisabled={isDisabled} onClickViewOrders={onViewOrdersClick} onClickUpdate={onUpdateButtonClick}/>
       </div>
     ) : (
       <>
       <div className='font-medium'>No health profile found</div>
-      <HealthDataForm onSubmit={onSubmit} isDisabled={false} />
+      <HealthDataForm onSubmit={onSubmit} isDisabled={false}  onClickViewOrders={onViewOrdersClick} onClickUpdate={onUpdateButtonClick}/>
       </>
     )}
   </div>
