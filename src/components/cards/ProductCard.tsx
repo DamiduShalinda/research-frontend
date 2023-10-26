@@ -4,10 +4,11 @@ import { BasicMeal } from '../../models/basicmealdata'
 interface Props {
   mealList: BasicMeal[]
   onClickViewMore: (id: number) => void
+  onClickAddToCart: (meal: BasicMeal) => void
 }
 
 
-export function ProductCard({mealList , onClickViewMore}: Props) {
+export function ProductCard({mealList , onClickViewMore , onClickAddToCart}: Props) {
   return (
     <div className="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4">
       {mealList.map(meal => (
@@ -26,9 +27,14 @@ export function ProductCard({mealList , onClickViewMore}: Props) {
             <p className="mt-2 text-sm text-gray-300">
               {meal.description}
             </p>
-            <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white" onClick={() => onClickViewMore(meal.id)}>
-              View More &rarr;
-            </button>
+            <div className="flex flex-row justify-evenly">
+              <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white" onClick={() => onClickViewMore(meal.id)}>
+                View More &rarr;
+              </button>
+              <button className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white" onClick={() => onClickAddToCart(meal)}>
+                Add to Cart &rarr;
+              </button>
+            </div>
           </div>
         </div>
       ))}

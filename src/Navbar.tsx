@@ -12,10 +12,6 @@ const Navbar: React.FC = () => {
       href: '/',
     },
     {
-      name: 'Meals',
-      href: '/meals',
-    },
-    {
       name: 'Cart',
       href: '/cart',
     },

@@ -44,17 +44,17 @@ const Account:React.FC = () => {
             console.log(data)
     }
   return (
-    <div>
+    <div className='mx-3'>
     {loading ? (
       <Loading />
     ) : healthprofile ? (
-      <div className='w-1/2'>
+      <div>
         <HealthDataForm onSubmit={onSubmit} values={healthprofile} isDisabled={isDisabled} />
         <button type='button' onClick={onUpdateButtonClick}>Update</button>
       </div>
     ) : (
       <>
-      <div>No health profile found</div>
+      <div className='font-medium'>No health profile found</div>
       <HealthDataForm onSubmit={onSubmit} isDisabled={false} />
       </>
     )}

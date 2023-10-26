@@ -12,6 +12,9 @@ interface HealthDataFormProps {
 const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps) => {
 
   const { register, handleSubmit , reset } = useForm<HealthProfile>()
+  const labelStyles = "block text-sm font-medium text-gray-700 mb-1";
+  const inputStyles = "block w-full h-10 px-4 py-2 text-base placeholder-gray-400 border rounded-lg border-gray-300 focus:outline-none focus:ring focus:ring-indigo-200";
+  const divstyles = "w-full md:w-1/3 mb-2"
 
 React.useEffect(() => {
 
@@ -26,120 +29,130 @@ React.useEffect(() => {
   
   return (
     <div>
-      <form onSubmit={handleSubmit(data.onSubmit)} className='flex flex-col gap-2'>
-            <div className='grid grid-cols-2 gap-2'>
-              <div className="flex flex-col w-full">
-                  <label htmlFor="calories" className='mb-1'> calories</label>
-                  <input
-                      type="number"
-                      placeholder='calories'
-                      id='username'
-                      disabled={data.isDisabled}
-                      {...register('calories' , {min: 0})}
-                      className="p-2 border rounded"
-                      />
-                </div>
-              <div className="flex flex-col w-full">
-                  <label htmlFor="carbohydratecontent" className='mb-1'> carbohydratecontent</label>
-                  <input
-                      type="number"
-                      placeholder='carbohydratecontent'
-                      id='carbohydratecontent'
-                      disabled={data.isDisabled}
-                      {...register('carbohydrateContent' , {min: 0})}
-                      className="p-2 border rounded"
-                      />
-                </div>
-              <div className="flex flex-col w-full">
-                  <label htmlFor="cholesterolcontent" className='mb-1'> cholesterolcontent</label>
+      <form onSubmit={handleSubmit(data.onSubmit)}>
+            <div className={divstyles}>
+              <label
+                htmlFor="calories"
+                className={labelStyles}
+              >
+                calories
+              </label>
+              <input
+                type="number"
+                placeholder="Enter calories"
+                id="calories"
+                disabled={data.isDisabled}
+                className={inputStyles}
+                {...register('calories', { min: 0 })}
+              />
+            </div>
+            <div className={divstyles}>
+                <label
+                  htmlFor="carbohydratecontent"
+                  className={labelStyles}
+                >
+                  carbohydratecontent
+                </label>
+                <input
+                  type="number"
+                  placeholder="Enter carbohydratecontent"
+                  id="carbohydratecontent"
+                  disabled={data.isDisabled}
+                  className={inputStyles}
+                  {...register('carbohydrateContent', { min: 0 })}
+                />
+              </div>
+              <div className={divstyles}>
+                  <label htmlFor="cholesterolcontent" className={labelStyles}> cholesterolcontent</label>
                   <input
                       type="number"
                       placeholder='cholesterolcontent'
                       id='cholesterolcontent'
                       disabled={data.isDisabled}
                       {...register('cholesterolContent' , {min: 0})}
-                      className="p-2 border rounded"
+                      className={inputStyles}
                       />
                 </div>
-              <div className="flex flex-col w-full">
-                  <label htmlFor="fatcontent" className='mb-1'> fatcontent</label>
+              <div className={divstyles}>
+                  <label htmlFor="fatcontent" className={labelStyles}> fatcontent</label>
                   <input
                       type="number"
                       placeholder='fatcontent'
                       id='fatcontent'
                       disabled={data.isDisabled}
                       {...register('fatContent' , {min: 0})}
-                      className="p-2 border rounded"
+                      className={inputStyles}
                       />
                 </div>
-              <div className="flex flex-col w-full">
-                  <label htmlFor="fibercontent" className='mb-1'> fibercontent</label>
+              <div className={divstyles}>
+                  <label htmlFor="fibercontent" className={labelStyles}> fibercontent</label>
                   <input
                       type="number"
                       placeholder='fibercontent'
                       id='fibercontent'
                       disabled={data.isDisabled}
                       {...register('fiberContent' , {min: 0})}
-                      className="p-2 border rounded"
+                      className={inputStyles}
                       />
                 </div>
-              <div className="flex flex-col w-full">
-                  <label htmlFor="proteincontent" className='mb-1'> proteincontent</label>
+              <div className={divstyles}>
+                  <label htmlFor="proteincontent" className={labelStyles}> proteincontent</label>
                   <input
                       type="number"
                       placeholder='proteincontent'
                       id='proteincontent'
                       disabled={data.isDisabled}
                       {...register('proteinContent' , {min: 0})}
-                      className="p-2 border rounded"
+                      className={inputStyles}
                       />
                 </div>
-              <div className="flex flex-col w-full">
-                  <label htmlFor="sodiumcontent" className='mb-1'> sodiumcontent</label>
+              <div className={divstyles}>
+                  <label htmlFor="sodiumcontent" className={labelStyles}> sodiumcontent</label>
                   <input
                       type="number"
                       placeholder='sodiumcontent'
                       id='sodiumcontent'
                       disabled={data.isDisabled}
                       {...register('sodiumContent' , {min: 0})}
-                      className="p-2 border rounded"
+                      className={inputStyles}
                       />
                 </div>
-              <div className="flex flex-col w-full">
-                  <label htmlFor="saturatedfatcontent" className='mb-1'> saturatedfatcontent</label>
+              <div className={divstyles}>
+                  <label htmlFor="saturatedfatcontent" className={labelStyles}> saturatedfatcontent</label>
                   <input
                       type="number"
                       placeholder='saturatedfatcontent'
                       id='saturatedfatcontent'
                       disabled={data.isDisabled}
                       {...register('saturatedFatContent' , {min: 0})}
-                      className="p-2 border rounded"
+                      className={inputStyles}
                       />
                 </div>
-              <div className="flex flex-col w-full">
-                  <label htmlFor="sugarcontent" className='mb-1'> sugarcontent</label>
+              <div className={divstyles}>
+                  <label htmlFor="sugarcontent" className={labelStyles}> sugarcontent</label>
                   <input
                       type="number"
                       placeholder='sugarcontent'
                       id='sugarcontent'
                       disabled={data.isDisabled}
                       {...register('sugarContent' , {min: 0})}
-                      className="p-2 border rounded"
+                      className={inputStyles}
                       />
                 </div>
-            </div>
-            <div className="flex flex-col w-full">
-                <label htmlFor="conditionname" className='mb-1'> conditionname</label>
+            <div className={divstyles}>
+                <label htmlFor="conditionname" className={labelStyles}> conditionname</label>
                 <input 
                     type="text" 
                     placeholder='conditionname' 
                     id='conditionname'
                     disabled={data.isDisabled}
                     {...register('condition_name')}
-                    className="p-2 border rounded"
+                    className={inputStyles}
                     />
               </div>
-            <input type="submit" value='Submit' className='bg-slate-300 border rounded-md w-full' hidden={data.isDisabled}/>
+            <input type="submit" value='Submit' 
+            className='rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 w-1/3' 
+            hidden={data.isDisabled} />
       </form>
     </div>
   )

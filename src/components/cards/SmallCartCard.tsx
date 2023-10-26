@@ -1,6 +1,7 @@
 import React from 'react'
 import { X } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useCart } from '../../context/CartContext'
 
 interface Props {
   handleClose: () => void
@@ -47,9 +48,13 @@ const products = [
 ]
 
 export function SmallCartCard({ handleClose }: Props) {
+
+  const image = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fd17b420-b388-4c8a-aaaa-e0a98ddf175f/dunk-high-retro-shoe-DdRmMZ.png'
+
+  const { cart } = useCart();
   return (
     <div
-      className="m-auto my-6 w-screen max-w-sm rounded-lg border border-gray-200 p-4 pt-4 shadow-sm sm:p-6 lg:p-8"
+      className="m-auto my-6 w-screen max-w-sm rounded-lg border border-gray-200 p-4 pt-4 shadow-sm sm:p-6 lg:p-8 bg-white"
       aria-modal="true"
       role="dialog"
       tabIndex={-1}
@@ -60,22 +65,22 @@ export function SmallCartCard({ handleClose }: Props) {
       </button>
       <div className="mt-6 space-y-6">
         <ul className="space-y-4">
-          {products.map((product) => (
-            <li key={product.id} className="flex items-center gap-4">
+          {cart.map((item) => (
+            <li key={item.meal.id} className="flex items-center gap-4">
               <img
-                src={product.imageSrc}
-                alt={product.name}
+                src={image}
+                alt={image}
                 className="h-16 w-16 rounded object-contain"
               />
               <div>
-                <h3 className="text-sm text-gray-900">{product.name}</h3>
+                <h3 className="text-sm text-gray-900">{item.meal.name}</h3>
                 <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
                   <div>
-                    <dd className="inline font-bold">{product.price}</dd>
+                    <dd className="inline font-bold">${item.meal.price}</dd>
                   </div>
                   <div>
-                    <dt className="inline">Color:</dt>
-                    <dd className="inline">{product.color}</dd>
+                    <dt className="inline">Quantity : </dt>
+                    <dd className="inline">{item.quantity}</dd>
                   </div>
                 </dl>
               </div>

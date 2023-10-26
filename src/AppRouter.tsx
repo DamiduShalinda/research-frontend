@@ -10,6 +10,7 @@ import ProtectedRoute from './utils/ProtectedRoute'
 import ExtendedMeal from './pages/ExtendedMeal'
 import MealsAddingPage from './pages/MealsAddingPage'
 import CartView from './cartComponents/CartiView'
+import OrderPage from './pages/OrderPage'
 
 const AppRouter:React.FC = () => {
 
@@ -26,6 +27,7 @@ const AppRouter:React.FC = () => {
         <Route path="/account" element={<ProtectedRoute><Account/></ProtectedRoute>}/>
         <Route path="/extendmeal/:id" element={<ProtectedRoute><ExtendedMeal/></ProtectedRoute>}/>
         <Route path="/cart" element={<ProtectedRoute><CartView/></ProtectedRoute>}/>
+        <Route path="/order/:id" element={<ProtectedRoute><OrderPage/></ProtectedRoute>}/>
         <Route path="*" element={<h1>Not Found</h1>}/>
       </Routes>
     </div>

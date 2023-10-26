@@ -10,6 +10,8 @@ import Cart, { CartItem } from '../cartComponents/Cart'
 import { useCart } from '../context/CartContext'
 import CartView from '../cartComponents/CartiView'
 import { MealCard } from '../components/cards/MealCard'
+import { ProductCard } from '../components/cards/ProductCard'
+import ViewCartButton from '../components/buttons/ViewCartButton'
 
 const Home : React.FC = () => {
 
@@ -36,31 +38,20 @@ const Home : React.FC = () => {
   };
 
 
-
-
   return (
     <>
     <SearchMeals/>
-    <KeywordSelection/>
     {mealDataLoaded ? (
       <div className=''>
-        <h1 className='text-7xl'>Home
-        </h1>
-        <div className="grid grid-cols-2 gap-3 mx-5">
-          {mealData.map((meal) => {
-            return (
-              <div key={meal.id}>
-              <BasicMealCard meal={meal} onclick={onclick} onAddToCart={handleAddToCart}/>
-              </div>
-            )
-          })}
-        </div>
+          <ProductCard mealList={mealData} onClickViewMore={onclick} onClickAddToCart={handleAddToCart}/>
         </div>
         ) : (
           <div className=''>
             <h1 className='text-7xl'>Loading...</h1>
             </div>
             )}
+
+      <ViewCartButton />
     </>
   )
 }
