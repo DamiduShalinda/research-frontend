@@ -1,4 +1,4 @@
-import { useNavigate, useParams  } from "react-router-dom"
+import { useParams  } from "react-router-dom"
 import { OrderCard } from "../components/cards/OrderCard"
 import { Order } from "../models/Order"
 import { useEffect, useState  ,useContext } from "react"
@@ -15,7 +15,6 @@ const OrderPage = () => {
     const { id } = useParams()
     const [ order , setOrder ] = useState<Order>()
     const { token } = useContext(AuthContext)
-    const navigate = useNavigate()
     const [ qrstring , setQRString ] = useState<string>("")
 
     useEffect(() => {

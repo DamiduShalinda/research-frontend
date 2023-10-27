@@ -5,6 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import { API_ROUTES } from '../apiroutes';
 import { AddHeader } from '../utils/AxiosHeader';
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 interface checkout {
   id : number,
@@ -16,6 +17,7 @@ const CartView: React.FC = () => {
 
   const { token } = React.useContext(AuthContext)
   const { clearCart } = useCart();
+  const navigate = useNavigate();
 
   const handleCheckOut = (cart: CartItem[]) => {
     
@@ -32,6 +34,7 @@ const CartView: React.FC = () => {
         console.log(res.data)
         alert('Checkout successful');
         clearCart();
+        navigate('/orders');
       })
       .catch((err) => {
         console.log(err.response?.data)

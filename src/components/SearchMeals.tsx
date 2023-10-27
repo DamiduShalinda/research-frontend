@@ -30,6 +30,7 @@ const SearchMeals:React.FC = () => {
         .then((res) => {
             setRecommandations(res.data.meals)
             setLoading(false)
+
         })
         .then((err) => console.log(err))
       }
@@ -48,6 +49,7 @@ const SearchMeals:React.FC = () => {
       <button
         type="button"
         className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        onClick={handleOnClick}
       >
         Search
       </button>
