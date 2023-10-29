@@ -6,11 +6,13 @@ import { AuthContext } from '../context/AuthContext';
 import { BasicOrder } from '../models/Order';
 import { AddHeader } from '../utils/AxiosHeader';
 import { Table } from '../components/Table';
+import Loading from '../components/loading/Loading';
 
 const AllOrderPage = () => {
 
     const { token } = React.useContext(AuthContext)
     const [ ordersList , setOrdersList ] = React.useState<BasicOrder[]>([])
+    const [ loading , setLoading ] = React.useState<boolean>(true)
     const navigate = useNavigate();
 
     React.useEffect(() => {
@@ -19,6 +21,7 @@ const AllOrderPage = () => {
         axiosInstance.get('')
           .then((res : AxiosResponse<BasicOrder[]>) => {
             setOrdersList(res.data)
+            setLoading(false)
           })
           .catch((err : AxiosError<ErrorResponse>) => {
             console.log(err.response?.data)
@@ -34,7 +37,11 @@ const AllOrderPage = () => {
 
   return (
     <div className='mx-4'>
-        <Table ordersList={ordersList} onViewHealthClick={showHelathDetailsCOmp} />
+        {loading ? (
+            <Loading />
+        ) : (
+          <Table ordersList={ordersList} onViewHealthClick={showHelathDetailsCOmp} />
+        )}
     </div>
   )
 }

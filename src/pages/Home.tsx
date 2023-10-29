@@ -9,6 +9,7 @@ import { ProductCard } from '../components/cards/ProductCard'
 import ViewCartButton from '../components/buttons/ViewCartButton'
 import { Heart , Utensils } from 'lucide-react'
 import { Recommendations } from '../models/recommendations'
+import Loading from '../components/loading/Loading'
 
 const Home : React.FC = () => {
 
@@ -45,6 +46,7 @@ const Home : React.FC = () => {
   };
 
   const handleOnClick = ( searchTerm : string) => {
+    setLoading(true)
     axios.get(API_ROUTES.search(searchTerm))
       .then((res : AxiosResponse<Recommendations>) => {
           setMealData(res.data.recommended_meals)
@@ -65,7 +67,7 @@ const Home : React.FC = () => {
     <div className='flex flex-col md:flex-row items-center justify-center gap-2 text-xl md:text-2xl' id='filtertitle'>
       <h1>Prefered</h1>
       <div
-        className={`flex flex-col md:flex-row items-center justify-center gap-2 text-xl md:text-2xl cursor-pointer ${selectedTab === 'recommend' ? 'underline' : ''}`}
+        className={`flex flex-col md:flex-row items-center justify-center gap-2 text-xl md:text-2xl cursor-pointer hover:underline ${selectedTab === 'recommend' ? '' : ''}`}
         onClick={() => handleTabClick('recommend')}
       >
         <h1>Recommendations</h1>
@@ -88,7 +90,7 @@ const Home : React.FC = () => {
         </div>
       </div>
     </div>
-    {mealDataLoaded ? (
+    {mealDataLoaded && !loading ? (
       <div className=''>
           <ProductCard 
               mealList={selectedTab === 'health' ? health_meals : selectedTab === 'orders' ? based_on_previous_orders : mealData}
@@ -102,9 +104,7 @@ const Home : React.FC = () => {
           ) : null}
         </div>
         ) : (
-          <div className=''>
-            <h1 className='text-7xl'>Loading...</h1>
-            </div>
+          <Loading/>
             )}
 
       <ViewCartButton />

@@ -46,13 +46,6 @@ const SearchMeals:React.FC<Props> = ({onSubmitButton} : Props) => {
         Search
       </button>
     </div>
-        <p className='flex flex-row items-start gap-2'>{searchTerm.map((item) => {
-            return (
-                <span key={item} 
-                className="rounded-md border border-black px-2 py-1 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                  >{item}</span>
-            )
-        })}</p>
     </div>
   )
 }

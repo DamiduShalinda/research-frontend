@@ -32,7 +32,7 @@ const AppRouter:React.FC = () => {
         <Route path="/cart" element={<ProtectedRoute><Layout><CartView/></Layout></ProtectedRoute>}/>
         <Route path="/order/:id" element={<ProtectedRoute><Layout><OrderPage/></Layout></ProtectedRoute>}/>
         <Route path="/order" element={<ProtectedRoute><Layout><OrderPage/></Layout></ProtectedRoute>}/>
-        <Route path="/allorder" element={<Layout><AllOrderPage/></Layout>}/>
+        <Route path="/allorder" element={<ProtectedRoute><Layout><AllOrderPage/></Layout></ProtectedRoute>}/>
         <Route path="/review" element={<Layout><Review/></Layout>}/>
         <Route path="*" element={<h1>Not Found</h1>}/>
       </Routes>

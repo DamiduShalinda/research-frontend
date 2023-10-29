@@ -1,5 +1,5 @@
-import React from 'react'
-import { Trash, Heart } from 'lucide-react'
+import React, { useEffect } from 'react'
+import { Trash, Heart, ArrowRight } from 'lucide-react'
 import { useCart } from '../../context/CartContext';
 import { CartItem } from '../../cartComponents/Cart';
 
@@ -16,15 +16,18 @@ export function CartOne({ onOrder }: CartOneProps) {
   
 
   const totalprice = cart.reduce((acc, item) => acc + item.meal.price * item.quantity, 0);
-  
+
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col space-y-4 p-6 px-2 sm:p-10 sm:px-2">
       <h2 className="text-3xl font-bold">Your cart</h2>
-      <p className="mt-3 text-sm font-medium text-gray-700">
+
+      {cart.length > 0 ? (
+        <>
+        <p className="mt-3 text-sm font-medium text-gray-700">
         Items in your cart are not reserved.
       </p>
-      <ul className="flex flex-col divide-y divide-gray-200">
+            <ul className="flex flex-col divide-y divide-gray-200">
         {cart.map((item) => (
           <li key={item.meal.id} className="flex flex-col py-6 sm:flex-row sm:justify-between">
             <div className="flex w-full space-x-2 sm:space-x-4">
@@ -79,6 +82,20 @@ export function CartOne({ onOrder }: CartOneProps) {
           Order
         </button>
       </div>
+        </>
+      ) :<>
+      <div className="flex justify-center mt-5">
+        <p className='font-medium text-gray-600 flex flex-row items-center justify-center gap-3'>
+          Your cart is empty. 
+          <a 
+            href="/" 
+            className='flex flex-row items-center justify-center text-black font-semibold hover:underline text-lg'
+            > Go to shop 
+            <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
+        </p>
+      </div>
+      </>}
     </div>
   )
 }

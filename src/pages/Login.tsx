@@ -1,5 +1,4 @@
 import React from 'react'
-import RegisterForm from '../components/forms/RegisterForm'
 import { RegisterData } from '../models/logindata'
 import { AuthContext } from '../context/AuthContext'
 import { SignInCard } from '../components/cards/SignInCard'
