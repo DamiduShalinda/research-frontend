@@ -35,7 +35,7 @@ const CartView: React.FC = () => {
         console.log(res.data)
         toast.success('Checkout successful');
         clearCart();
-        navigate('/orders');
+        navigate('/order');
       })
       .catch((err) => {
         console.log(err.response?.data)

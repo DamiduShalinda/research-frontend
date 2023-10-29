@@ -64,15 +64,17 @@ const Home : React.FC = () => {
   return (
     <>
     <SearchMeals onSubmitButton={handleOnClick}/>
-    <div className='flex flex-col md:flex-row items-center justify-center gap-2 text-xl md:text-2xl' id='filtertitle'>
-      <h1>Prefered</h1>
-      <div
-        className={`flex flex-col md:flex-row items-center justify-center gap-2 text-xl md:text-2xl cursor-pointer hover:underline ${selectedTab === 'recommend' ? '' : ''}`}
-        onClick={() => handleTabClick('recommend')}
-      >
-        <h1>Recommendations</h1>
+    <div className='flex flex-col md:flex-row items-center justify-center gap-2 text-lg md:text-2xl' id='filtertitle'>
+      <div className='flex flex-row items-center justify-center gap-2'>
+        <h1>Prefered</h1>
+        <div
+          className={`flex flex-col md:flex-row items-center justify-center gap-2 text-lg md:text-2xl cursor-pointer hover:underline ${selectedTab === 'recommend' ? '' : ''}`}
+          onClick={() => handleTabClick('recommend')}
+        >
+          <h1>Recommendations</h1>
+        </div>
+        <h2>Based On</h2>
       </div>
-      <h2>Based On</h2>
       <div className='flex flex-row'>
         <div
           className={`text-lg md:text-xl flex flex-row items-center justify-center gap-1 px-3 py-2 mx-2 cursor-pointer rounded-xl ${selectedTab === 'health' ? 'bg-black/10' : ''}`}

@@ -109,7 +109,7 @@ const Navbar: React.FC = () => {
                <div className="mt-6">
                <nav className="grid gap-y-4">
                  {menuItems.map((item) => (
-                   <Link to={item.href} key={item.name} className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50">
+                   <Link to={item.href} key={item.name} className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50" onClick={toggleMenu}>
                     <span className="ml-3 text-base font-medium text-gray-900">
                     {item.name}
                     </span>

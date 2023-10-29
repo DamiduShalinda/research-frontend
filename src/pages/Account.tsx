@@ -14,7 +14,7 @@ const Account:React.FC = () => {
 
   return (
       <div>
-        <div>
+        <div className='mx-2'>
               <HealthProfilePage onViewOrdersClick={showHelathDetailsCOmp}/>
             </div>
       </div>
