@@ -1,18 +1,19 @@
 import axios, { AxiosResponse } from 'axios'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { number } from 'yup'
 import { ExtendedMealData } from '../models/Extendmealdata'
 import { API_ROUTES } from '../apiroutes'
 import Loading from '../components/loading/Loading'
-import { ProductCard } from '../components/cards/ProductCard'
 import { ProductDetails } from '../components/cards/ProductDetails'
+import { useCart } from '../context/CartContext'
+import { BasicMeal } from '../models/basicmealdata'
 
 const ExtendedMeal:React.FC = () => {
 
     const {id} = useParams()
     const [mealData , setMealData] = React.useState<ExtendedMealData>()
     const [loading , setLoading] = React.useState(true)
+    const  { addToCart } = useCart();
 
     React.useEffect(() => {
       
@@ -21,7 +22,6 @@ const ExtendedMeal:React.FC = () => {
             .then ( data => {
                 setMealData(data)
                 setLoading(false)
-                console.log(data)
             } )
     }
         async function getData(id:number) {
@@ -30,11 +30,33 @@ const ExtendedMeal:React.FC = () => {
         }
     }, [])
     
+    const handleAddToCart = (meal : ExtendedMealData , id : number) => {
+      const mealbasic : BasicMeal = {
+        id,
+        name : meal.name,
+        price : meal.price,
+        image_1 : meal.image_1,
+        keywords : meal.keywords,
+        ingredients : meal.ingredients,
+        description : meal.description,
+      }
+        addToCart(mealbasic)
+    }
+
+    const addToCartBtnClicked = () => {
+      if (mealData && id) {
+        handleAddToCart(mealData , parseInt(id))
+      } else {
+        console.log("mealdata is null")
+      }
+    }
+
     
+
     return (
         <div>
-          {mealData ? (
-          <ProductDetails meal={mealData}/>
+          {id && mealData ? (
+          <ProductDetails meal={mealData} addToCart={addToCartBtnClicked}/>
           ) : (
             <Loading />
           )}

@@ -1,12 +1,31 @@
 import React from 'react'
-import { ChevronLeft, ChevronRight, Heart, Share } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { ExtendedMealData } from '../../models/Extendmealdata'
 
 interface Props {
-  meal : ExtendedMealData
+  meal : ExtendedMealData,
+  addToCart : () => void,
 }
 
-export function ProductDetails({meal} : Props) {
+export function ProductDetails({meal , addToCart} : Props) {
+  const [currentImage, setCurrentImage] = React.useState(0);
+
+  const imageUrls = [
+    `https://res.cloudinary.com/dfvhftecz/${meal.image_1}`,
+    `https://res.cloudinary.com/dfvhftecz/${meal.image_2}`,
+    `https://res.cloudinary.com/dfvhftecz/${meal.image_3}`,
+    `https://res.cloudinary.com/dfvhftecz/${meal.image_4}`,
+  ];
+
+  const handlePrevClick = () => {
+    setCurrentImage((prev) => (prev === 0 ? imageUrls.length - 1 : prev - 1));
+  };
+
+  const handleNextClick = () => {
+    setCurrentImage((prev) => (prev === imageUrls.length - 1 ? 0 : prev + 1));
+  };
+
+
   return (
     <div className="sp mx-auto max-w-7xl px-2 py-10 lg:px-0">
       <div className="overflow-hidden">
@@ -14,39 +33,35 @@ export function ProductDetails({meal} : Props) {
           <div className="items-start justify-between lg:flex lg:space-x-8">
             <div className="mb-6 items-center justify-center overflow-hidden md:mb-8 lg:mb-0 xl:flex">
               <div className="w-full xl:flex xl:flex-row-reverse">
-                <div className="relative mb-2.5 w-full shrink-0 overflow-hidden rounded-md border md:mb-3 xl:w-[480px] 2xl:w-[650px]">
+                <div className="relative mb-2.5 w-full shrink-0 overflow-hidden rounded-md border md:mb-3 xl:w-[380px] 2xl:w-[550px]">
                   <div className="relative flex items-center justify-center">
-                    <img
-                      alt="Product gallery 1"
-                      src="https://images.unsplash.com/photo-1580902394724-b08ff9ba7e8a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
-                      width={650}
-                      height={590}
+                  <img
+                      alt={`Product gallery ${currentImage + 1}`}
+                      src={imageUrls[currentImage]}
                       className="rounded-lg object-cover md:h-[300px] md:w-full lg:h-full"
+                      style={{ width: '650px', height: '590px' }}
                     />
                   </div>
                   <div className="absolute top-2/4 z-10 flex w-full items-center justify-between">
-                    <ChevronLeft className="text-white" />
-                    <ChevronRight className="text-white" />
+                    <ChevronLeft className="text-white" onClick={handlePrevClick}/>
+                    <ChevronRight className="text-white" onClick={handleNextClick}/>
                   </div>
                 </div>
                 <div className="flex gap-2 xl:flex-col">
-                  {[
-                    'https://images.unsplash.com/photo-1580902394836-21e0d429b7f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=924&q=80',
-                    'https://images.unsplash.com/photo-1580902394743-1394a7ec93d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
-                    'https://images.unsplash.com/photo-1580902394767-81b0facc0894?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
-                  ].map((image, index) => (
-                    <div
-                      key={image}
-                      className="border-border-base flex cursor-pointer items-center justify-center overflow-hidden rounded border transition hover:opacity-75 "
-                    >
-                      <img
-                        alt={`Product ${index}`}
-                        src={image}
-                        decoding="async"
-                        loading="lazy"
-                        className="h-20 w-20 object-cover md:h-24 md:w-24 lg:h-28 lg:w-28 xl:w-32"
-                      />
-                    </div>
+                {imageUrls.map((image, index) => (
+                  <div
+                    key={image}
+                    className="border-border-base flex cursor-pointer items-center justify-center overflow-hidden rounded border transition hover:opacity-75 "
+                  >
+                    <img
+                      alt={`Product ${index}`}
+                      src={image}
+                      decoding="async"
+                      loading="lazy"
+                      onClick={() => setCurrentImage(index)}
+                      className="h-20 w-20 object-cover md:h-24 md:w-24 lg:h-28 lg:w-28 xl:w-32"
+                    />
+                  </div>
                   ))}
                 </div>
               </div>
@@ -76,6 +91,7 @@ export function ProductDetails({meal} : Props) {
                 <button
                   type="button"
                   className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  onClick={() => addToCart()}
                 >
                   Add To Cart
                 </button>

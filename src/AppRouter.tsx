@@ -11,6 +11,9 @@ import ExtendedMeal from './pages/ExtendedMeal'
 import MealsAddingPage from './pages/MealsAddingPage'
 import CartView from './cartComponents/CartiView'
 import OrderPage from './pages/OrderPage'
+import Layout from './utils/Layout'
+import Review from './pages/Review'
+import AllOrderPage from './pages/AllOrderPage'
 
 const AppRouter:React.FC = () => {
 
@@ -19,16 +22,18 @@ const AppRouter:React.FC = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={token ? <ProtectedRoute><Home/></ProtectedRoute> : <HomeWithoutLogin/>}/>
+        <Route path="/" element={token ? <ProtectedRoute><Layout><Home/></Layout></ProtectedRoute> : <Layout><HomeWithoutLogin/></Layout>}/>
         <Route path="/meals" element={<ProtectedRoute><Meals/></ProtectedRoute>}/>
         <Route path="/meals/new/:id" element={<ProtectedRoute><MealsAddingPage/></ProtectedRoute>}/>
         <Route path="/meals/new/" element={<ProtectedRoute><MealsAddingPage/></ProtectedRoute>}/>
         <Route path="/login" element={<Login/>}/>
-        <Route path="/account" element={<ProtectedRoute><Account/></ProtectedRoute>}/>
-        <Route path="/extendmeal/:id" element={<ProtectedRoute><ExtendedMeal/></ProtectedRoute>}/>
-        <Route path="/cart" element={<ProtectedRoute><CartView/></ProtectedRoute>}/>
-        <Route path="/order/:id" element={<ProtectedRoute><OrderPage/></ProtectedRoute>}/>
-        <Route path="/order" element={<ProtectedRoute><OrderPage/></ProtectedRoute>}/>
+        <Route path="/account" element={<ProtectedRoute><Layout><Account/></Layout></ProtectedRoute>}/>
+        <Route path="/extendmeal/:id" element={<ProtectedRoute><Layout><ExtendedMeal/></Layout></ProtectedRoute>}/>
+        <Route path="/cart" element={<ProtectedRoute><Layout><CartView/></Layout></ProtectedRoute>}/>
+        <Route path="/order/:id" element={<ProtectedRoute><Layout><OrderPage/></Layout></ProtectedRoute>}/>
+        <Route path="/order" element={<ProtectedRoute><Layout><OrderPage/></Layout></ProtectedRoute>}/>
+        <Route path="/allorder" element={<Layout><AllOrderPage/></Layout>}/>
+        <Route path="/review" element={<Layout><Review/></Layout>}/>
         <Route path="*" element={<h1>Not Found</h1>}/>
       </Routes>
     </div>

@@ -12,7 +12,6 @@ interface Props {
 
 export function SmallCartCard({ handleClose }: Props) {
 
-  const image = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fd17b420-b388-4c8a-aaaa-e0a98ddf175f/dunk-high-retro-shoe-DdRmMZ.png'
 
   const { cart } = useCart();
   return (
@@ -31,8 +30,8 @@ export function SmallCartCard({ handleClose }: Props) {
           {cart.map((item) => (
             <li key={item.meal.id} className="flex items-center gap-4">
               <img
-                src={image}
-                alt={image}
+                src={`https://res.cloudinary.com/dfvhftecz/${item.meal.image_1}`}
+                alt={item.meal.name}
                 className="h-16 w-16 rounded object-contain"
               />
               <div>

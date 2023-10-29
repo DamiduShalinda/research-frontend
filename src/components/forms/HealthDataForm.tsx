@@ -18,6 +18,31 @@ const HealthDataForm:React.FC<HealthDataFormProps> = (data : HealthDataFormProps
   const inputStyles = "block w-full h-10 px-4 py-2 text-base placeholder-gray-400 border rounded-lg border-gray-300 focus:outline-none focus:ring focus:ring-indigo-200";
   const divstyles = "w-full md:w-2/3 mb-2"
 
+  const categories = [
+    'Mediterranean' , 
+    'Kosher' , 
+    'Sugar-Free',
+    'Gluten-Free',
+    'Organic',
+    'Allergen-Free',
+    'Nut-Free',
+    'Low-FODMAP',
+    'Low-Crab',
+    'Vegetarianism',
+    'DASH',
+    'Low-Sodium',
+    'Fruitarian',
+    'Carnivore',
+    'Veganism',
+    'Lactose-Free',
+    'Ketogenic',
+    'Paleo Diet',
+    'Whole30',
+    'Raw Food',
+    'Flexitarian',
+    'Halal',
+  ]
+
 React.useEffect(() => {
 
   if (data.values) {
@@ -53,7 +78,8 @@ React.useEffect(() => {
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden border border-gray-200 md:rounded-lg">
-              <form onSubmit={handleSubmit(data.onSubmit)} className='grid grid-cols-2 p-4 '>
+              <form onSubmit={handleSubmit(data.onSubmit)}>
+              <div className='grid md:grid-cols-2 p-4 '>
             <div className={divstyles}>
               <label
                 htmlFor="calories"
@@ -174,11 +200,92 @@ React.useEffect(() => {
                     className={inputStyles}
                     />
               </div>
+            <div className={divstyles}>
+                <label htmlFor="fav_ing_1" className={labelStyles}>Favorite Ingredients - 1</label>
+                <input 
+                    type="text" 
+                    placeholder='Favorite Ingredients - 1' 
+                    id='fav_ing_1'
+                    disabled={data.isDisabled}
+                    {...register('fav_ing_1')}
+                    className={inputStyles}
+                    />
+              </div>
+            <div className={divstyles}>
+                <label htmlFor="fav_ing_2" className={labelStyles}> Favorite Ingredients - 2</label>
+                <input 
+                    type="text" 
+                    placeholder=' Favorite Ingredients - 2' 
+                    id='fav_ing_2'
+                    disabled={data.isDisabled}
+                    {...register('fav_ing_2')}
+                    className={inputStyles}
+                    />
+              </div>
+            <div className={divstyles}>
+                <label htmlFor="fav_ing_3" className={labelStyles}> Favorite Ingredients - 3</label>
+                <input 
+                    type="text" 
+                    placeholder=' Favorite Ingredients - 3' 
+                    id='fav_ing_3'
+                    disabled={data.isDisabled}
+                    {...register('fav_ing_3')}
+                    className={inputStyles}
+                    />
+              </div>
+            <div className={divstyles}>
+                <label htmlFor="condition name" className={labelStyles}>Health Condition - 1</label>
+                <input 
+                    type="text" 
+                    placeholder='condition name' 
+                    id='health_condition_1'
+                    disabled={data.isDisabled}
+                    {...register('health_condition_1')}
+                    className={inputStyles}
+                    />
+              </div>
+            <div className={divstyles}>
+                <label htmlFor="health_condition_2" className={labelStyles}>Health Condition - 2</label>
+                <input 
+                    type="text" 
+                    placeholder='Health Condition - 2' 
+                    id='health_condition_2'
+                    disabled={data.isDisabled}
+                    {...register('health_condition_2')}
+                    className={inputStyles}
+                    />
+              </div>
+            <div className={divstyles}>
+                <label htmlFor="health_condition_3" className={labelStyles}>Health Condition - 3</label>
+                <input 
+                    type="text" 
+                    placeholder='Health Condition - 3' 
+                    id='health_condition_3'
+                    disabled={data.isDisabled}
+                    {...register('health_condition_3')}
+                    className={inputStyles}
+                    />
+              </div>
+            <div className={divstyles}>
+                <label htmlFor="Prefered Diet Category" className={labelStyles}>Prefered Diet Category</label>
+                <select 
+                    id="Prefered Diet Category" 
+                    disabled={data.isDisabled}
+                    {...register('prefered_diet_category')}
+                    className={inputStyles}
+                    >
+                    <option value="">Select</option>
+                    {categories.map((category , index) => (
+                      <option key={index} value={category}>{category}</option>
+                    ))}
+                </select>
+              </div>
+              </div>
             <input type="submit" value='Submit' 
-            className='rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 w-1/3' 
+            className='rounded-md bg-green-600 px-3 py-2 mb-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 w-1/3' 
             hidden={data.isDisabled} />
             <input type="button" value='Update' 
-            className='rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 w-1/3' 
+            className='rounded-md bg-blue-600 px-3 py-2 mb-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 w-1/3' 
             onClick={data.onClickUpdate}
             hidden={!data.isDisabled} />
             </form>

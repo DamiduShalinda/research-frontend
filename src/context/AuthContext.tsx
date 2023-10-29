@@ -4,6 +4,7 @@ import axios, { AxiosResponse, AxiosError } from 'axios';
 import { ErrorResponse, useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../apiroutes';
 import { JWTResponse } from '../models/responses';
+import { toast } from 'react-toastify';
 
 interface AuthContextProps {
   token: string | null;
@@ -41,6 +42,7 @@ const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       }
     })
     .catch((err : AxiosError<ErrorResponse>) => {
+      toast.error("Try Again");
       setError(err.response?.data || null);
     })
   }

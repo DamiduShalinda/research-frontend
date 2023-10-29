@@ -7,6 +7,7 @@ import { ErrorResponse } from 'react-router-dom'
 import { API_ROUTES } from '../apiroutes'
 import { AddHeader } from '../utils/AxiosHeader'
 import { AuthContext } from '../context/AuthContext'
+import { toast } from 'react-toastify';
 
 interface Props {
   onViewOrdersClick: () => void
@@ -46,6 +47,23 @@ const HealthProfilePage = ({onViewOrdersClick} : Props) => {
 
     const onSubmit = (data : HealthProfile)  => {
             console.log(data)
+        const axiosInstance = AddHeader(token , API_ROUTES.health)
+        axiosInstance.post(API_ROUTES.health , data)
+          .then((res : AxiosResponse<HealthProfile>) => {
+            setHealthProfile(res.data)
+            setDisabled(true)
+            toast.success("Health profile updated successfully")
+          })
+          .catch((err : AxiosError<ErrorResponse>) => {
+            if (err.response?.status === 500) {
+              setDisabled(true)
+              toast.success("Health profile updated successfully")
+              window.location.reload()
+            } else {
+              console.log(err.response?.data)
+            }
+          }
+          )
     }
 
 

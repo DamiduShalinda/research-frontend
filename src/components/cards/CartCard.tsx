@@ -11,7 +11,6 @@ interface CartOneProps {
 
 export function CartOne({ onOrder }: CartOneProps) {
 
-  const image = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fd17b420-b388-4c8a-aaaa-e0a98ddf175f/dunk-high-retro-shoe-DdRmMZ.png'
 
   const { cart } = useCart();
   
@@ -31,8 +30,8 @@ export function CartOne({ onOrder }: CartOneProps) {
             <div className="flex w-full space-x-2 sm:space-x-4">
               <img
                 className="h-20 w-20 flex-shrink-0 rounded object-contain outline-none dark:border-transparent sm:h-32 sm:w-32"
-                src={image}
-                alt={image}
+                src={`https://res.cloudinary.com/dfvhftecz/${item.meal.image_1}`}
+                alt={item.meal.name}
               />
               <div className="flex w-full flex-col justify-between pb-4">
                 <div className="flex w-full justify-between space-x-2 pb-2">

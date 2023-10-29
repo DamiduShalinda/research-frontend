@@ -17,7 +17,7 @@ export function ProductCard({mealList , onClickViewMore , onClickAddToCart}: Pro
           className="relative aspect-[16/9]  w-auto rounded-md md:aspect-auto md:h-[400px]"
         >
           <img
-            src="https://images.unsplash.com/photo-1588099768531-a72d4a198538?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NnwxMTM4MTU1NXx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
+            src={`https://res.cloudinary.com/dfvhftecz/${meal.image_1}`}
             alt="AirMax Pro"
             className="z-0 h-full w-full rounded-md object-cover"
           />

@@ -6,6 +6,7 @@ import { API_ROUTES } from '../apiroutes';
 import { AddHeader } from '../utils/AxiosHeader';
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 interface checkout {
   id : number,
@@ -32,7 +33,7 @@ const CartView: React.FC = () => {
     axiosInstance.post(API_ROUTES.checkout, checkout)
       .then((res) => {
         console.log(res.data)
-        alert('Checkout successful');
+        toast.success('Checkout successful');
         clearCart();
         navigate('/orders');
       })

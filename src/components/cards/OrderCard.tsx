@@ -11,7 +11,6 @@ interface Props {
 
 export const OrderCard = ({order , qrString} : Props) => {
 
-  const image = 'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fd17b420-b388-4c8a-aaaa-e0a98ddf175f/dunk-high-retro-shoe-DdRmMZ.png'
   return (
     <div className="mx-auto my-4 max-w-6xl px-2 md:my-6 md:px-0">
       <h2 className="text-3xl font-bold">Order Details</h2>
@@ -55,9 +54,9 @@ export const OrderCard = ({order , qrString} : Props) => {
                   <div className="flex flex-1 items-stretch">
                     <div className="flex-shrink-0">
                       <img
-                        className="h-20 w-20 rounded-lg border border-gray-200 object-contain"
-                        src={image}
-                        alt={image}
+                        className="h-20 w-20 rounded-lg border border-gray-200 object-fill"
+                        src={item.image_1}
+                        alt={item.name}
                       />
                     </div>
 

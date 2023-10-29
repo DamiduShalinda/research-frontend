@@ -4,6 +4,7 @@ interface meal {
   name : string,
   price : number,
   quantity : number,
+  image_1 : string,
 }
 
 interface user {

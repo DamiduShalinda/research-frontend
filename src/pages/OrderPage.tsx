@@ -24,6 +24,7 @@ const OrderPage = () => {
     id ? axios.get(API_ROUTES.specificOrder(parseInt(id)))
         .then((res) => {
             setOrder(res.data)
+            console.log(res.data)
             setQRString(getQRString(res.data))
         })
         .catch((err) => {
@@ -47,7 +48,7 @@ const OrderPage = () => {
     }
     
   return (
-    <div>
+    <div className="mx-4">
         {order && <OrderCard order={order} qrString={qrstring}/> }
     </div>
   )

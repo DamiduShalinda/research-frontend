@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BasicMeal } from '../models/basicmealdata'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { API_ROUTES } from '../apiroutes'
 import SearchMeals from '../components/SearchMeals'
 import { useNavigate } from 'react-router-dom'
@@ -8,10 +8,15 @@ import { useCart } from '../context/CartContext'
 import { ProductCard } from '../components/cards/ProductCard'
 import ViewCartButton from '../components/buttons/ViewCartButton'
 import { Heart , Utensils } from 'lucide-react'
+import { Recommendations } from '../models/recommendations'
 
 const Home : React.FC = () => {
 
   const [mealData, setMealData] = useState<BasicMeal[]>([])
+  const [ recommendation_meals , setRecommandations ] = useState<BasicMeal[]>([])
+  const [ health_meals , setHealthMeals ] = useState<BasicMeal[]>([])
+  const [ based_on_previous_orders , setBasedOnPreviousOrders ] = useState<BasicMeal[]>([])
+  const [ loading , setLoading] = React.useState<boolean>(false)
   const [mealDataLoaded, setMealDataLoaded] = useState(false)
   const [selectedTab, setSelectedTab] = useState<string>('');
   const navigate = useNavigate()
@@ -39,12 +44,32 @@ const Home : React.FC = () => {
     console.log(tab);
   };
 
+  const handleOnClick = ( searchTerm : string) => {
+    axios.get(API_ROUTES.search(searchTerm))
+      .then((res : AxiosResponse<Recommendations>) => {
+          setMealData(res.data.recommended_meals)
+          setHealthMeals(res.data.healthy_meals)
+          setBasedOnPreviousOrders(res.data.based_on_previous_orders)
+        console.log(res.data)
+          setLoading(false)
+
+      })
+      .then((err) => console.log(err))
+    }
+
+ 
 
   return (
     <>
-    <SearchMeals/>
+    <SearchMeals onSubmitButton={handleOnClick}/>
     <div className='flex flex-col md:flex-row items-center justify-center gap-2 text-xl md:text-2xl' id='filtertitle'>
-      <h1>Prefered Recommendations</h1>
+      <h1>Prefered</h1>
+      <div
+        className={`flex flex-col md:flex-row items-center justify-center gap-2 text-xl md:text-2xl cursor-pointer ${selectedTab === 'recommend' ? 'underline' : ''}`}
+        onClick={() => handleTabClick('recommend')}
+      >
+        <h1>Recommendations</h1>
+      </div>
       <h2>Based On</h2>
       <div className='flex flex-row'>
         <div
@@ -65,7 +90,16 @@ const Home : React.FC = () => {
     </div>
     {mealDataLoaded ? (
       <div className=''>
-          <ProductCard mealList={mealData} onClickViewMore={onclick} onClickAddToCart={handleAddToCart}/>
+          <ProductCard 
+              mealList={selectedTab === 'health' ? health_meals : selectedTab === 'orders' ? based_on_previous_orders : mealData}
+              onClickViewMore={onclick} 
+              onClickAddToCart={handleAddToCart}/>
+          { health_meals.length === 0 && based_on_previous_orders.length === 0 && selectedTab === 'health' || selectedTab === 'orders' ? (
+            <div className='flex flex-col items-center justify-center gap-2'>
+              <h1 className='text-2xl'>No meals found</h1>
+              <p className='text-lg'>Try searching for something else</p>
+            </div>
+          ) : null}
         </div>
         ) : (
           <div className=''>

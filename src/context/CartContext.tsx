@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { BasicMeal } from '../models/basicmealdata';
+import { toast } from 'react-toastify';
 
 interface CartItem {
   meal: BasicMeal;
@@ -29,6 +30,7 @@ export const useCart = () => {
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
+
   const addToCart = (meal: BasicMeal) => {
     const existingItem = cart.find((item) => item.meal.id === meal.id);
 
@@ -41,6 +43,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     } else {
       setCart([...cart, { meal, quantity: 1 }]);
     }
+    toast.success("Added to Cart");
   };
 
   const clearCart = () => {

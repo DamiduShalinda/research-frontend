@@ -11,7 +11,10 @@ export interface ExtendedMealData {
     saturatedFatContent: number;
     sodiumContent: number;
     sugarContent: number;
-    image: string;
+    image_1: string;
+    image_2: string;
+    image_3: string;
+    image_4: string;
     price: number;
     keywords: string[];
     ingredients: string[];
