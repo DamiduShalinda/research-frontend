@@ -64,7 +64,7 @@ export function CartOne({ onOrder }: CartOneProps) {
       <div className="space-y-1 text-right">
         <p>
           Total amount:
-          <span className="font-semibold">{totalprice}</span>
+          <span className="font-semibold">{Math.round(totalprice * 100) / 100}</span>
         </p>
       </div>
       <div className="flex justify-end space-x-4">
